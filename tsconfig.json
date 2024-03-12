@@ -21,7 +21,8 @@
       "@domain/*": ["./src/domain/*"],
       "@http-app/*": ["./src/http-app/*"],
       "@infrastructure/*": ["./src/infrastructure/*"],
-      "@tests/*": ["./src/tests/*"]
+      "@tests/*": ["./src/tests/*"],
+      "@config/*": ["./src/config/*"]
     }
   }
 }
