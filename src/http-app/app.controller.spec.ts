@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from '@http-app/app.controller';
-import { AppService } from '@domain/app.service';
+import { OpenAIService } from '@domain/openAI';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -8,7 +8,7 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [OpenAIService],
     }).compile();
 
     appController = app.get<AppController>(AppController);

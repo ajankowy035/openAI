@@ -1,12 +1,22 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from '@domain/app.service';
+import { Controller, Get, UseInterceptors, Post } from '@nestjs/common';
+import { UploadedFile } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { OpenAIService } from '@domain/openAI';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly openAIService: OpenAIService) {}
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return this.openAIService.getHello();
+  }
+
+  @Post('/variations')
+  @UseInterceptors(FileInterceptor('file'))
+  getImageVariations(
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<string> {
+    return this.openAIService.generateImageVariation(file.buffer);
   }
 }
